@@ -1,3 +1,6 @@
+/*
+	Zhenghao Wu l630003054
+*/
 #include <stdio.h>
 int main (){
 	int x = 30, y = 30, z = 40;

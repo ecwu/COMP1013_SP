@@ -1,3 +1,7 @@
+/*
+	Zhenghao Wu l630003054
+	write the program according to the control flow diagram
+*/
 #include <stdio.h>
 int main(){
 	int n;

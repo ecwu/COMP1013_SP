@@ -1,3 +1,8 @@
+/*
+	Zhenghao Wu l630003054
+	input 2 integers value a and b, then print the smaller one between a and b
+	special requirement: no if statement
+*/
 #include <stdio.h>
 int main(){
 	int a, b, small;
