@@ -2,9 +2,9 @@
 	Zhenghao Wu l630003054
 	Read height (in cm) and weight (in Kilo) and tell the user about their body condition
 	
-	height ¨C 105 > weight + 20 : You are too slim
-	weight - 10 < height ¨C 105 <= weight + 20 : You are fit
-	weight - 10 > height ¨C 105 : You are too fat
+	height - 105 > weight + 20 : You are too slim
+	weight - 10 < height - 105 <= weight + 20 : You are fit
+	weight - 10 > height - 105 : You are too fat
 */
 # include <stdio.h>
 int main () {

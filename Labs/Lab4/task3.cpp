@@ -1,6 +1,6 @@
 /*
 	Zhenghao Wu l630003054
-	transfer student¡¯s GPA grade to GPA point.
+	transfer student's GPA grade to GPA point.
 
 	requirement: Switch statement
 
