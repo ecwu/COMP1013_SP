@@ -2,7 +2,6 @@
 	Zhenghao Wu l630003054
 	calculate the number of digits in a positive integer 
 	whether this positive integer is a perfect square.
-	requirement: No function
 */
 #include <stdio.h>
 int main () {
