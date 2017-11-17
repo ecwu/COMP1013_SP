@@ -14,6 +14,8 @@ int main () {
 	char inputs[100] = "\0", EOL[4] = "End";
 	int counter = 0;
 
+	puts("Please input a sentence, end with a 'End'");
+
 	do{
 		scanf("%s", &inputs); // read the input string(inside a do loop, excuted at least once)
 		counter ++;// add one for each word
