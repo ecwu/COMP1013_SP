@@ -7,11 +7,11 @@
 # include <string.h>
 # include <math.h>
 
-float floatConvert(char inputs[], int sign);
-int intConvert(char inputs[], int sign);
-int plusMinusChecker(char inputs[]);
-int dotChecker(char inputs[]);
-int validChecker(char inputs[], int signStatus, int floatStatus);
+float floatConvert(char inputs[], int sign); // convert the string into float
+int intConvert(char inputs[], int sign); // convert the string into int
+int plusMinusChecker(char inputs[]); // check the number is a positive number or negative number
+int dotChecker(char inputs[]); // check the number is a float or integer
+int validChecker(char inputs[], int signStatus, int floatStatus); // check the input is convertable or not
 
 int main() {
 	char inputs[100];
@@ -19,27 +19,28 @@ int main() {
 	float floatConverted = 0.0;
 
 	puts("Please input a number:");
-	scanf("%s", inputs);
+	scanf("%s", inputs); // read the whole string
 	sign = plusMinusChecker(inputs);
 	floatStatus = dotChecker(inputs);
+	// storage sign and float status
 	if (validChecker(inputs, sign, floatStatus)) {
-		puts("Invalid Inputs");
+		puts("Invalid Inputs");// output a waring and pause the program
 		return -1;
 	}
 
 	if (floatStatus) {
-		floatConverted = floatConvert(inputs, sign);
-		printf("sign = %d, PM = %d\n%f\n", sign, floatStatus, floatConverted);
+		floatConverted = floatConvert(inputs, sign);// output the converted result
+		printf("String Convert to Float: %f\n", floatConverted);
 	}
 	else {
-		intConverted = intConvert(inputs, sign);
-		printf("sign = %d, PM = %d\n%d\n", sign, floatStatus, intConverted);
+		intConverted = intConvert(inputs, sign);// output the converted result
+		printf("String Convert to Int: %d\n", intConverted);
 	}
 
 	
 	return 0;
 }
-int plusMinusChecker(char inputs[]) {
+int plusMinusChecker(char inputs[]) {// check the minus sign in the string
 	int sign = 0;
 	for (int i = 0; i < strlen(inputs); i++) {
 		if (inputs[i] == '-') {
@@ -48,7 +49,7 @@ int plusMinusChecker(char inputs[]) {
 	}
 	return sign ? 1 : 0;
 }
-int dotChecker(char inputs[]) {
+int dotChecker(char inputs[]) {// check the dot in the string(Float or Int)
 	for (int i = 0; i < strlen(inputs); i++) {
 		if (inputs[i] == '.') {
 			return 1;
@@ -57,12 +58,14 @@ int dotChecker(char inputs[]) {
 	return 0;
 }
 
-int validChecker(char inputs[], int signStatus, int floatStatus) {
+int validChecker(char inputs[], int signStatus, int floatStatus) {// whether the string valid or not (1 Invalid; 0 Valid)
+	// ("-" not place at the correct place)
 	if (signStatus) {
 		if (inputs[0] != '-') {
 			return 1;
 		}
 	}
+	// ("." not place at the correct place)
 	else if (floatStatus) {
 		if (inputs[strlen(inputs) - 1] == '.') {
 			return 1;
@@ -74,7 +77,7 @@ int validChecker(char inputs[], int signStatus, int floatStatus) {
 	return 0;
 }
 
-float floatConvert(char inputs[], int sign) {
+float floatConvert(char inputs[], int sign) {// convert the string into float
 	float num = 0.0;
 	int signStart = 0, afterDot = 0, decimal = 0;
 	for (int i = 0; i < strlen(inputs); i++) {
@@ -87,23 +90,23 @@ float floatConvert(char inputs[], int sign) {
 		default:
 			if (!signStart) {
 				num *= 10;
-				num += int(inputs[i]) - 48;
+				num += int(inputs[i]) - 48;//get the integer part
 			}
 			else {
 				afterDot *= 10;
-				afterDot += int(inputs[i]) - 48;
+				afterDot += int(inputs[i]) - 48;//get the decimal part(in integer format)
 				decimal++;
 			}
 		}
 	}
-	num = num + (afterDot * pow(double(10), (-decimal)));
+	num = num + (afterDot * pow(double(10), (-decimal)));// assamble two parts together
 	if (sign){
-		num = -num;
+		num = -num; // inverse the number if the string has negative sign
 	}
 	return num;
 }
 
-int intConvert(char inputs[], int sign) {
+int intConvert(char inputs[], int sign) {// convert the string into int
 	int num = 0;
 	for (int i = 0; i < strlen(inputs); i++) {
 		switch (inputs[i]) {
@@ -111,11 +114,11 @@ int intConvert(char inputs[], int sign) {
 			break;
 		default:
 				num *= 10;
-				num += int(inputs[i]) - 48;
+				num += int(inputs[i]) - 48;//convert the integer part into number
 		}
 	}
 	if (sign){
-		num = -num;
+		num = -num;// inverse the number if the string has negative sign
 	}
 	return num;
 }

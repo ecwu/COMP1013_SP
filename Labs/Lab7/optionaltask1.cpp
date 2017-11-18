@@ -10,8 +10,8 @@
 #include <stdio.h>
 #include <string.h>
 
-int charCounter(char inputs[]);
-int endSignChecker(char currentInput[],char endSign[]);
+int charCounter(char inputs[]);// this sub-function use to count how many character(s) in the string
+int endSignChecker(char currentInput[],char endSign[]);// this sub-function use to check whether the last word is "End" or not.
 
 int main() {
 	char sentence[100], inverseSentence[100], temp[100];
@@ -19,31 +19,31 @@ int main() {
 	int length = 0, first = 0;
 	//scanf("%[^\n]", sentence);
 
-	scanf("%s", temp);
+	scanf("%s", temp);// read word by word
 
-	while(endSignChecker(temp,EOL)){
+	while(endSignChecker(temp,EOL)){// when word is not "End"
 		if (!first){
-			strcpy(sentence,temp);
+			strcpy(sentence,temp);// init the sentence string
 			first = 1;
 		}else{
-			strcat(sentence,temp);
+			strcat(sentence,temp);// link the follow string to the sentence string
 		}
-		strcat(sentence,space);
+		strcat(sentence,space);// link a space after the string
 		scanf("%s", temp);
 	}
 
-	length = charCounter(sentence) - 1;
-	sentence[length + 1] = '\0';
+	length = charCounter(sentence) - 1;// ignore the "\0" char
+	sentence[length + 1] = '\0';// replace the last space to a "\0" char
 	for (int i = 0; i < length; i++) {
-		inverseSentence[length - i - 1] = sentence[i];
+		inverseSentence[length - i - 1] = sentence[i]; // reverse the string
 	}
 
-	inverseSentence[length] = '\0';
-	printf("%s\n", inverseSentence);
+	inverseSentence[length] = '\0';// End the new string with a "\0" char
+	printf("%s\n", inverseSentence); // print the inversed string
 	return 0;
 }
 
-int charCounter(char inputs[]) {
+int charCounter(char inputs[]) {// count char number
 	int i = 0;
 	char endSign[1] = { '\0' };
 	while (inputs[i] != endSign[0]) {
@@ -55,7 +55,7 @@ int charCounter(char inputs[]) {
 int endSignChecker(char currentInput[],char endSign[]){
     int status = 0;
     for(int i = 0; currentInput[i] != '\0' && endSign[i] != '\0'; i++){ 
-        if(currentInput[i] != endSign[i]){
+        if(currentInput[i] != endSign[i]){// is the last word is "End"
             status = 1;
             break;
         }

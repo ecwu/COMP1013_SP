@@ -1,1 +1,1 @@
-int compareASCIICode(char char1, char char2);
+int compareASCIICode(char char1, char char2); // put function prototype here

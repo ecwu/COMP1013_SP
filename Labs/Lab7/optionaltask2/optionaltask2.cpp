@@ -1,5 +1,5 @@
 # include <stdio.h>
-# include "compareASCIICode.hpp"
+# include "compareASCIICode.hpp" // include this hpp file using quotation mark
 int main(void) {// main function body
 	char char1, char2;
 	puts("please input two ASCII code");// using puts to print out the message
