@@ -18,7 +18,7 @@ int main() {
 	char EOL[4] = "End", space[2] = " ";
 	int length = 0, first = 0;
 	//scanf("%[^\n]", sentence);
-
+	puts("Please input a string end with a 'End': ");
 	scanf("%s", temp);// read word by word
 
 	while(endSignChecker(temp,EOL)){// when word is not "End"

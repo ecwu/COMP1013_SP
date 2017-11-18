@@ -18,7 +18,7 @@ int main() {
 	int sign = 0, floatStatus = 0, intConverted = 0;
 	float floatConverted = 0.0;
 
-	puts("Please input a number:");
+	puts("Please input a number in string format:");
 	scanf("%s", inputs); // read the whole string
 	sign = plusMinusChecker(inputs);
 	floatStatus = dotChecker(inputs);
@@ -29,7 +29,7 @@ int main() {
 	}
 
 	if (floatStatus) {
-		floatConverted = floatConvert(inputs, sign);// output the converted result
+		floatConverted = floatConvert(inputs, sign);// output the converted result. Precision lost may occur
 		printf("String Convert to Float: %f\n", floatConverted);
 	}
 	else {
