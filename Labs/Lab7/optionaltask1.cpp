@@ -5,6 +5,7 @@
 	(End not include)
 
 	requirement: Use scanf
+	the inverted sentence is stored as one string
 */
 #include <stdio.h>
 #include <string.h>

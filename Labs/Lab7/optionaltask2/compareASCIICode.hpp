@@ -1,0 +1,1 @@
+int compareASCIICode(char char1, char char2);
