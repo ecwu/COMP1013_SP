@@ -1,0 +1,1 @@
+int stringLength(char s[]); // function prototype here
