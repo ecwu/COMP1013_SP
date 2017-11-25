@@ -9,7 +9,7 @@
 	sorted in descending order.
 */
 # include <stdio.h>
-void sort(int original[], int length);
+void sort(int original[], int length); // function prototype
 
 int main(void){
 	int number[50], length = 0, i = 0;
