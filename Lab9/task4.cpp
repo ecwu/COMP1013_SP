@@ -45,7 +45,7 @@ int main(){
 	sort(stuArray, order, numberOfStudent);
 
 	for (int i = 0; i <= numberOfStudent; i++){
-		printf("%s\t%g\t%s\n", stuArray[i].name, stuArray[i].score, stuArray[i].major);
+		printf("%s\t%g\t%s\n", stuArray[order[i]].name, stuArray[order[i]].score, stuArray[order[i]].major);
 	}
 
 	return 0;
@@ -54,11 +54,10 @@ int main(){
 void sort(students originalData[50], int order[50], int length){
 	int temp = 0;
 	for(int i = 0; i <= length; i++){
-		for (int j = i; j <= length; j++){
-			// if(strcmp(originalData[order[j]].name, originalData[order[j+1]].name) > 0){
-			if(strcmp(originalData[j].name, originalData[j+1].name) > 0){
-				temp = order[j];
-				order[j] = order[j+1];
+		for (int j = i; j < length; j++){
+			if(strcmp(originalData[order[i]].name, originalData[order[j+1]].name) > 0){
+				temp = order[i];
+				order[i] = order[j+1];
 				order[j+1] = temp;
 			}
 		}
