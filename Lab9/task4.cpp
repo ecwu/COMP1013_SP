@@ -43,7 +43,8 @@ int main(){
 	}
 
 	sort(stuArray, order, numberOfStudent);
-
+	
+	printf("Name\tScore\tMajor\n");
 	for (int i = 0; i <= numberOfStudent; i++){
 		printf("%s\t%g\t%s\n", stuArray[order[i]].name, stuArray[order[i]].score, stuArray[order[i]].major);
 	}
