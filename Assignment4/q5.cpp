@@ -7,3 +7,20 @@
 */
 
 # include <stdio.h>
+int findAn(int n); // function prototype
+
+int main (){
+	int find = 16;
+
+	printf("a%d = %d\n", find, findAn(find)); // function call
+
+	return 0;
+}
+
+int findAn(int n){
+	if (n == 1){
+		return 2; // base case
+	}
+
+	return 2 * (findAn(n - 1)) + 1; // recursion
+}
