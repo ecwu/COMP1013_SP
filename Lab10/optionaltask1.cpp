@@ -22,6 +22,8 @@
 */
 
 #include <stdio.h>
+#include <string.h>
+
 int occurrence1 (char *sub, char *str);
 int occurrence2 (char *sub, char *str);
 
@@ -34,11 +36,40 @@ int main(){
 }
 
 int occurrence1 (char *sub, char *str){
-	int n = 0;
+	int n = 0, indicator = 0, counter = 0;
 	while (str[n] != '\0'){
-		
+		for (int i = 0; i < strlen(sub); i++){
+			if (str[n + i] != sub[i]){
+				indicator = 1;
+				break;
+			}
+		}
+		if (!indicator){
+			counter++;
+		}
+		indicator = 0;
+		n++;
 	}
+	return counter;
 }
 int occurrence2 (char *sub, char *str){
+	int indicator = 0;
+	char cmp[1] = {'\0'};
 
+	if(strcmp(str, cmp) == 0){
+		return 0;
+	}
+
+	for (int i = 0; i < strlen(sub); i++){
+		if (str[i] != sub[i]){
+			indicator = 1;
+			break;
+		}
+	}
+
+	if(!indicator){
+		return 1 + occurrence2 (sub, (&str[0])+1);
+	}else{
+		return occurrence2 (sub, (&str[0])+1);
+	}
 }
