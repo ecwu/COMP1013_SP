@@ -12,13 +12,33 @@
 #include <stdlib.h>
 
 int main(){
-	int *set;
-	int length;
+	int length = 0, temp = 0; 
 
-	puts("Input how many integer you want to input?")
-	scanf("%d", length);
+	puts("Input how many integer you want to input?");
+	scanf("%d", &length); // ask user to input how many integer they want to input
 
-	set = (int*)malloc(length * sizeof(int));
+	int* set = (int*)malloc(length * sizeof(int)); // allocate memory base on users input
+	if (set){ // if the memory allocated
+		for(int i = 0; i < length; i++){ // ask user to input a sequence of integer
+			printf("Input NO.%d number\n", i+1);
+			scanf("%d", &set[i]);
+		}
+	}
+
+	length --; // make length start from 0
+
+	for(int i = 0; i < length / 2; i++){ // swap the head and tail elements
+			temp = set[i];
+			set[i] = set[length - i];
+			set[length - i] = temp;
+		}
+
+	for (int i = 0; i <= length; i++){ // output the elements one by one (reverse order)
+		printf("%d ", set[i]);
+	}
+	printf("\n");
+
+	free(set); // free the memory
 
 	return 0;
 }
