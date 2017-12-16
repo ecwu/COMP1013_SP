@@ -34,14 +34,14 @@ struct student{
 	int score;
 };
 
-int sort(struct student *stu, int index); // 
+int sort(struct student *stu, int index); // function prototype
 
 int main(){
 	FILE *fp;
 	struct student stu[20];
 	int indicator = 0, i = 0;
 
-	while (indicator == 0){
+	while (indicator == 0){ // read student information one by one
 		printf("please input name and score of the NO. %d student\n", i+1);
 		scanf("%s%d", stu[i].name, &stu[i].score);
 		puts("Input '0' to start next student, Input '-1' to stop");
@@ -49,19 +49,19 @@ int main(){
 		i++;
 	}
 
-	fp = fopen("student.txt", "w");
+	fp = fopen("student.txt", "w"); // open the file
 
 	if(!fp){
-		puts("Unable to open/new the file");
+		puts("Unable to open/new the file"); // return a error message if the file cant open / new
 		return -1;
 	}
 	for (int j = 0; j < i; j++){
-		fprintf(fp, "%s %d\n", stu[j].name, stu[j].score);
+		fprintf(fp, "%s %d\n", stu[j].name, stu[j].score); // write the info to file
 	}
 	fclose(fp);
-	puts("Output the student list successfully!");
+	puts("Output the student list successfully!"); // output a success message
 
-	sort(stu, i);
+	sort(stu, i); // function call
 
 	return 0;
 }
@@ -81,18 +81,20 @@ int sort(struct student *stu, int index){
 				strcpy(stu[i].name, temp.name);
 				stu[i].score = temp.score;
 			} 
-		}
+		} // sort the student info
 	}
 	
 	fp2 = fopen("sorted.txt", "w");
 
 	if(!fp2){
-		puts("Unable to open/new the file");
+		puts("Unable to open/new the file"); // return a error message if the file cant open / new
 		return -1;
 	}
 	for (int j = 0; j < index; j++){
-		fprintf(fp2, "%s %d\n", stu[j].name, stu[j].score);
+		fprintf(fp2, "%s %d\n", stu[j].name, stu[j].score); // write the info to file
 	}
 	fclose(fp2);
-	puts("Output the sorted student list successfully!");
+	puts("Output the sorted student list successfully!"); // output a success message
+
+	return 0;
 }
