@@ -1,44 +1,33 @@
 /*
 	Author: Zhenghao Wu l630003054
 
-	- read a sequence of data 
-	- output the data in the reverse order
-	- Array is not allowed to be used
-	- The total number of the data is inputted by user
-	- The memory should be dynamically allocated
+	- to randomly generate a string (English letters in lower case)
+	- length given by the user
+	- Hints: use rand() function
+	- String representation cannot use array
 */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 int main(){
-	int length = 0, temp = 0; 
+	int generateASCII = 0, length = 0;
 
-	puts("Input how many integer you want to input?");
-	scanf("%d", &length); // ask user to input how many integer they want to input
+	puts("Input how many English letters you want to generate?");
+	scanf("%d", &length); // ask user to input how many letters the user want to generate
 
-	int* set = (int*)malloc(length * sizeof(int)); // allocate memory base on users input
-	if (set){ // if the memory allocated
-		for(int i = 0; i < length; i++){ // ask user to input a sequence of integer
-			printf("Input NO.%d number\n", i+1);
-			scanf("%d", &set[i]);
+	char* randomStr = (char*)malloc((length + 1) * sizeof(char)); // allocate memory base on users input
+	if (randomStr){ // if the memory allocated
+		for(int i = 0; i < length; i++){ 
+			randomStr[i] = 97 + rand() % 26; // generate a ascii code for lowercase letter(97 - 123)
 		}
 	}
+	randomStr[length] = '\0';// add a '\0' at the end of the str
 
-	length --; // make length start from 0
-
-	for(int i = 0; i < length / 2; i++){ // swap the head and tail elements
-			temp = set[i];
-			set[i] = set[length - i];
-			set[length - i] = temp;
-		}
-
-	for (int i = 0; i <= length; i++){ // output the elements one by one (reverse order)
-		printf("%d ", set[i]);
-	}
-	printf("\n");
-
-	free(set); // free the memory
+	printf("%s\n", randomStr); //output
+	
+	free(randomStr); // free the memory
 
 	return 0;
 }
