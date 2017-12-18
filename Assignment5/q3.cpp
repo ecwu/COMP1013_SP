@@ -38,6 +38,7 @@ int sort(struct student *stu, int index); // function prototype
 
 int main(){
 	FILE *fp;
+	FILE *fp2;
 	struct student stu[20];
 	int indicator = 0, i = 0;
 
@@ -63,6 +64,18 @@ int main(){
 
 	sort(stu, i); // function call
 
+	fp2 = fopen("sorted.txt", "w");
+
+	if(!fp2){
+		puts("Unable to open/new the file"); // return a error message if the file cant open / new
+		return -1;
+	}
+	for (int j = 0; j < i; j++){
+		fprintf(fp2, "%s %d\n", stu[j].name, stu[j].score); // write the info to file
+	}
+	fclose(fp2);
+	puts("Output the sorted student list successfully!"); // output a success message
+
 	return 0;
 }
 
@@ -83,18 +96,6 @@ int sort(struct student *stu, int index){
 			} 
 		} // sort the student info
 	}
-	
-	fp2 = fopen("sorted.txt", "w");
-
-	if(!fp2){
-		puts("Unable to open/new the file"); // return a error message if the file cant open / new
-		return -1;
-	}
-	for (int j = 0; j < index; j++){
-		fprintf(fp2, "%s %d\n", stu[j].name, stu[j].score); // write the info to file
-	}
-	fclose(fp2);
-	puts("Output the sorted student list successfully!"); // output a success message
 
 	return 0;
 }
