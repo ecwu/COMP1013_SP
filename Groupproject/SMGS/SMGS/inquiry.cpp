@@ -47,7 +47,7 @@ void subListFunction() {
 
 int loadStudentMarksforInquiry(struct stuNMarks *studentMarks, int* assignmentStatus, int stuNumber) {
 	FILE *markp;
-	char studentNameBuffer[10], firstLineBuffer[256];
+	char studentNameBuffer[11], firstLineBuffer[256];
 	int index = 0, i = 0;
 
 	markp = fopen("marks.txt", "r");
@@ -79,7 +79,12 @@ int loadStudentMarksforInquiry(struct stuNMarks *studentMarks, int* assignmentSt
 		i++;
 	}
 
-	while ((fscanf(markp, "%[^ ]%d", studentNameBuffer, &studentMarks[index].studentID)) != EOF || index < stuNumber) {
+	while ((fscanf(markp, "%[^]0123456789]%d", studentNameBuffer, &studentMarks[index].studentID)) != EOF || index < stuNumber) {
+		int endPosition = strlen(studentNameBuffer) - 1;
+		while (studentNameBuffer[endPosition] == ' ') {
+			studentNameBuffer[endPosition] = '\0';
+			endPosition--;
+		}
 		strcpy(studentMarks[index].name, studentNameBuffer);
 		if (assignmentStatus[0] == 1) {
 			fscanf(markp, "%f", &studentMarks[index].assignment1);

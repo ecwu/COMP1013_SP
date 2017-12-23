@@ -24,7 +24,7 @@ int gradeFunction() {
 
 int loadStudentList(struct stu *studentList, int *stuNumber) {
 	FILE *namep;
-	char studentNameBuffer[10], firstLineBuffer[256];
+	char studentNameBuffer[11], firstLineBuffer[256];
 
 	namep = fopen("students.txt", "r");
 	if (namep == NULL) {
@@ -35,7 +35,13 @@ int loadStudentList(struct stu *studentList, int *stuNumber) {
 
 	fscanf(namep, "%[^\n]\n", firstLineBuffer);
 
-	while ((fscanf(namep, "%[^ ]%d\n", studentNameBuffer, &studentList[*stuNumber].studentID)) != EOF) {
+	while ((fscanf(namep, "%[^]0123456789]%d\n", studentNameBuffer, &studentList[*stuNumber].studentID)) != EOF) {
+		int endPosition = strlen(studentNameBuffer) - 1;
+		
+		while (studentNameBuffer[endPosition] == ' ') {
+			studentNameBuffer[endPosition] = '\0';
+			endPosition--;
+		}
 		strcpy(studentList[*stuNumber].name, studentNameBuffer);
 		(*stuNumber)++;
 	}
@@ -47,7 +53,7 @@ int loadStudentList(struct stu *studentList, int *stuNumber) {
 
 int loadStudentMarks(struct stuNMarks *studentMarks, struct stu *studentList, int* assignmentStatus, int stuNumber) {
 	FILE *markp;
-	char studentNameBuffer[10], firstLineBuffer[256];
+	char studentNameBuffer[11], firstLineBuffer[256];
 	int index = 0, i = 0;
 
 	markp = fopen("marks.txt", "r");
@@ -79,7 +85,12 @@ int loadStudentMarks(struct stuNMarks *studentMarks, struct stu *studentList, in
 		i++;
 	}
 
-	while ((fscanf(markp, "%[^ ]%d", studentNameBuffer, &studentMarks[index].studentID)) != EOF || index < stuNumber) {
+	while ((fscanf(markp, "%[^]0123456789]%d", studentNameBuffer, &studentMarks[index].studentID)) != EOF || index < stuNumber) {
+		int endPosition = strlen(studentNameBuffer) - 1;
+		while (studentNameBuffer[endPosition] == ' ') {
+			studentNameBuffer[endPosition] = '\0';
+			endPosition--;
+		}
 		strcpy(studentMarks[index].name, studentNameBuffer);
 		if (assignmentStatus[0] == 1) {
 			fscanf(markp, "%f", &studentMarks[index].assignment1);

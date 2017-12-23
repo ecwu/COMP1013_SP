@@ -12,7 +12,7 @@ Create Time: 2017-12-13
 void listFunction();
 
 int main() {
-	char version[] = "0.4.2";
+	char version[] = "0.5.0";
 	printf("Welcome to Score Management System %s\n\n\n", version);
 
 	while (1) {

@@ -1,11 +1,11 @@
 #pragma once
 struct stu {
-	char name[10];
+	char name[11];
 	int studentID;
 };
 
 struct stuNMarks {
-	char name[10];
+	char name[11];
 	int studentID;
 	float assignment1;
 	float assignment2;
@@ -15,13 +15,13 @@ struct stuNMarks {
 };
 
 struct stuNSum {
-	char name[10];
+	char name[11];
 	int studentID;
 	float sum;
 };
 
 struct marksNPointer {
-	char name[10];
+	char name[11];
 	int studentID;
 	float sum;
 	struct marksNPointer *nextNode;

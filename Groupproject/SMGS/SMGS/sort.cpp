@@ -26,7 +26,7 @@ int sort() {
 }
 
 int bubbleSort(struct stuNMarks *studentMarks, int stuNumber) {
-	char studentNameTemp[10];
+	char studentNameTemp[11];
 	int studentIDTemp = 0;
 	float studentMarksSumi = 0.0, studentMarksSumj = 0.0;
 	float studentAssignment1 = 0.0, studentAssignment2 = 0.0, studentAssignment3 = 0.0, studentAssignment4 = 0.0, studentAssignment5 = 0.0;
@@ -96,7 +96,7 @@ int writeStudentSum(struct stuNSum *studentSum, int stuNumber) {
 int loadSortedList(int stuNumber) {
 	FILE *sortedp;
 	struct marksNPointer *pnode1, *pnode2, *head;
-	char studentNameBuffer[10], uselessBuffer[256];
+	char studentNameBuffer[11], uselessBuffer[256];
 	int studentIDBuffer = 0, index = 0;
 	float studentTotalBuffer = 0.0;
 
@@ -106,7 +106,12 @@ int loadSortedList(int stuNumber) {
 		exit(0);
 	}
 	fscanf(sortedp, "%[^\n]\n", uselessBuffer);
-	while ((fscanf(sortedp, "%[^ ]%d%f\n", studentNameBuffer, &studentIDBuffer, &studentTotalBuffer)) != EOF) {
+	while ((fscanf(sortedp, "%[^]0123456789]%d%f\n", studentNameBuffer, &studentIDBuffer, &studentTotalBuffer)) != EOF) {
+		int endPosition = strlen(studentNameBuffer) - 1;
+		while (studentNameBuffer[endPosition] == ' ') {
+			studentNameBuffer[endPosition] = '\0';
+			endPosition--;
+		}
 		if (index == 0){
 			pnode1 = (struct marksNPointer *)malloc(sizeof(struct marksNPointer));
 			strcpy(pnode1->name, studentNameBuffer);
