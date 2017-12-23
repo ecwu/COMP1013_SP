@@ -12,7 +12,7 @@ Create Time: 2017-12-13
 void listFunction();
 
 int main() {
-	char version[] = "0.5.0";
+	char version[] = "0.6.0";
 	printf("Welcome to Score Management System %s\n\n\n", version);
 
 	while (1) {
@@ -26,7 +26,6 @@ void listFunction() {
 	int select;
 
 	do {
-		printf("\n\n\n\n");
 		printf("\t\t|$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$|\n");
 		printf("\t\t|                                               |\n");
 		printf("\t\t|       Welcome to Use Grade System         	|\n");
@@ -39,9 +38,6 @@ void listFunction() {
 		printf("\t\t|   $$-Quit-			-- Press 4	|\n");
 		printf("\t\t|                                               |\n");
 		printf("\t\t|$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$|\n");
-
-		printf("\n\n\n\n");
-
 		printf("Please Input Number:");
 		scanf("%d", &select);
 

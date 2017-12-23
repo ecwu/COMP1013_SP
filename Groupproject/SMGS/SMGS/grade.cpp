@@ -14,7 +14,9 @@ int gradeFunction() {
 
 	loadStudentMarks(studentMarks, studentList, &assignmentStatus[0], stuNumber);
 
-	indexReader(&assignmentNO, &questionNO, &assignmentStatus[0]);
+	if (indexReader(&assignmentNO, &questionNO, &assignmentStatus[0]) == -1) {
+		return 0;
+	}
 	grading(studentMarks, assignmentNO, questionNO, stuNumber);
 
 	writeStudentMarks(studentMarks, stuNumber, &assignmentStatus[0]);
@@ -145,7 +147,7 @@ void loadStudentMarksInit(struct stuNMarks *studentMarks, struct stu *studentLis
 
 int indexReader(int *assignmentNO, int *questionNO, int* assignmentStatus) {
 	int assignment = 0, overwrite = 0, question = 1;
-	printf("Which Assignment You Want to Grade(Enter a number from 1 -- 5):");
+	printf("Which Assignment You Want to Grade\n(Enter a number from 1 -- 5):");
 	scanf("%d", &assignment);
 	while (!(assignment >= 1 && assignment <= 5)) {
 		puts("Error: The data you entered is invalid, Please enter a Number from 1 -- 5:");
@@ -153,7 +155,7 @@ int indexReader(int *assignmentNO, int *questionNO, int* assignmentStatus) {
 	}
 	if (assignmentStatus[assignment - 1] == 1) {
 		printf("You've graded Assignment %d before, do you want to overwrite the data?\n", assignment);
-		puts("Enter '1' to overwrite the existing data, Enter '0' to abort the operation.");
+		puts("1 - Overwrite the existing data\n0 - Abort the operation");
 		scanf("%d", &overwrite);
 		if (overwrite == 0) {
 			return -1;
@@ -165,7 +167,7 @@ int indexReader(int *assignmentNO, int *questionNO, int* assignmentStatus) {
 	}
 	*assignmentNO = assignment;
 	assignmentStatus[assignment - 1] = 1;
-	printf("You'are grading Assignment %d, How many question in this assignment?(Enter a Number from 1 -- 10):\n", assignment);
+	printf("You'are grading Assignment %d, How many question in this assignment?\n(Enter a Number from 1 -- 10):", assignment);
 	scanf("%d", &question);
 	while (!(question >= 1 && question <= 10)) {
 		puts("Error: The data you entered is invalid, Please enter a Number from 1 -- 10:");
@@ -204,7 +206,7 @@ int grading(struct stuNMarks *studentMarks, int assignmentNO, int questionNO, in
 				break;
 			}
 		}
-		printf("Assignment %d's Mark for student: %s is: %.2f\n", assignmentNO, studentMarks[i].name, marksum / questionNO);
+		printf("Assignment %d's mark for student: %s is: %.2f\n", assignmentNO, studentMarks[i].name, marksum / questionNO);
 		switch (assignmentNO) {
 		case 1:
 			studentMarks[i].assignment1 = marksum / questionNO;
@@ -224,7 +226,7 @@ int grading(struct stuNMarks *studentMarks, int assignmentNO, int questionNO, in
 		}
 		marksum = 0;
 	}
-	printf("Finished the grading for assignment %d\n", assignmentNO);
+	printf("Finished the grading for Assignment %d\n", assignmentNO);
 	return 0;
 }
 

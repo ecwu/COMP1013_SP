@@ -22,13 +22,11 @@ void subListFunction() {
 	}
 
 	do {
-		
 		puts("1 - Inquire By Index");
 		puts("2 - Inquire By Student ID");
 		puts("3 - Return to the previous menu");
 		printf("Please Select the function you want:");
 		scanf("%d", &select);
-		printf("\n\n");
 
 		switch (select) {
 		case 1:inquiryByIndex(studentMarks, &assignmentStatus[0], stuNumber);
@@ -127,15 +125,14 @@ int loadStudentMarksforInquiry(struct stuNMarks *studentMarks, int* assignmentSt
 
 int inquiryByIndex(struct stuNMarks *studentMarks, int* assignmentStatus, int stuNumber) {
 	int inputIndex = 0;
-	puts("\n\n");
 	puts("Index   Name      ID    ");
 	for (int i = 0; i <stuNumber; i++) {
 		printf("%-8d%-10s%-6d\n", i+1, studentMarks[i].name, studentMarks[i].studentID);
 	}
-	puts("Please input the student's index you want to inquire:");
+	printf("Please input the student's index you want to inquire:");
 	scanf("%d", &inputIndex);
 	while (!(inputIndex > 0 && inputIndex <= stuNumber)) {
-		printf("%d is an invalid index, please enter another one:\n", inputIndex);
+		printf("%d is an invalid index, please enter another one:", inputIndex);
 		scanf("%d", &inputIndex);
 	}
 
@@ -163,10 +160,9 @@ int inquiryByIndex(struct stuNMarks *studentMarks, int* assignmentStatus, int st
 	if (assignmentStatus[4] == 1) {
 		printf("%-13.2f", studentMarks[inputIndex - 1].assignment5);
 	}
-	printf("\n\n\n");
 
-
-
+	printf("\n");
+	printf("\n");
 
 	return 0;
 }
@@ -201,11 +197,12 @@ int inquiryByStudentId(struct stuNMarks *studentMarks, int* assignmentStatus, in
 			if (assignmentStatus[4] == 1) {
 				printf("%-13.2f", studentMarks[i].assignment5);
 			}
-			printf("\n\n\n");
+			printf("\n");
+			printf("\n");
 			return 0;
 		}
 	}
 	puts("The student does not exist.");
-	printf("\n\n\n");
+	printf("\n");
 	return -1;
 }

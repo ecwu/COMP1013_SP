@@ -21,6 +21,7 @@ int sort() {
 	writeStudentSum(studentSum, stuNumber);
 
 	loadSortedList(stuNumber);
+	printf("\n");
 
 	return 0;
 }
