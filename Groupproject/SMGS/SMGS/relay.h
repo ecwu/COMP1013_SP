@@ -43,3 +43,5 @@ int sort();
 int bubbleSort(struct stuNMarks *studentMarks, int stuNumber);
 int marksToSum(struct stuNMarks *studentMarks, struct stuNSum *studentSum, int stuNumber);
 int writeStudentSum(struct stuNSum *studentSum, int stuNumber);
+int loadSortedList(int stuNumber);
+int outputLinkedList(struct marksNPointer *current);

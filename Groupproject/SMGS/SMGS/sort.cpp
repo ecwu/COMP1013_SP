@@ -8,7 +8,6 @@ int sort() {
 	struct stu studentList[20];
 	struct stuNMarks studentMarks[20];
 	struct stuNSum studentSum[20];
-	struct marksNPointer studentMarksLinkedList;
 	int assignmentStatus[5] = { 0,0,0,0,0 };
 	int stuNumber = 0;
 	
@@ -21,9 +20,10 @@ int sort() {
 	marksToSum(studentMarks, studentSum, stuNumber);
 	writeStudentSum(studentSum, stuNumber);
 
+	loadSortedList(stuNumber);
+
 	return 0;
 }
-
 
 int bubbleSort(struct stuNMarks *studentMarks, int stuNumber) {
 	char studentNameTemp[10];
@@ -91,4 +91,58 @@ int writeStudentSum(struct stuNSum *studentSum, int stuNumber) {
 	printf("Output the data successful.\n");
 	fclose(sortedp);
 	return 0;
+}
+
+int loadSortedList(int stuNumber) {
+	FILE *sortedp;
+	struct marksNPointer *pnode1, *pnode2, *head;
+	char studentNameBuffer[10], uselessBuffer[256];
+	int studentIDBuffer = 0, index = 0;
+	float studentTotalBuffer = 0.0;
+
+	sortedp = fopen("sorted.txt", "r");
+	if (sortedp == NULL) {
+		puts("Fatal Error: Unable to load sorted marks list.");
+		exit(0);
+	}
+	fscanf(sortedp, "%[^\n]\n", uselessBuffer);
+	while ((fscanf(sortedp, "%[^ ]%d%f\n", studentNameBuffer, &studentIDBuffer, &studentTotalBuffer)) != EOF) {
+		if (index == 0){
+			pnode1 = (struct marksNPointer *)malloc(sizeof(struct marksNPointer));
+			strcpy(pnode1->name, studentNameBuffer);
+			pnode1->studentID = studentIDBuffer;
+			pnode1->sum = studentTotalBuffer;
+			head = pnode1;
+		}
+		else {
+			pnode2 = (struct marksNPointer *)malloc(sizeof(struct marksNPointer));
+			strcpy(pnode2->name, studentNameBuffer);
+			pnode2->studentID = studentIDBuffer;
+			pnode2->sum = studentTotalBuffer;
+			pnode1->nextNode = pnode2;
+			pnode1 = pnode2;
+		}
+		index++;
+	}
+	pnode2->nextNode = NULL;
+	fclose(sortedp);
+	puts("Name      ID    Total        ");
+	outputLinkedList(head);
+	pnode1 = head;
+	while (pnode1->nextNode != NULL) {
+		head = head->nextNode;
+		free(pnode1);
+		pnode1 = head;
+	}
+	free(pnode1);
+	return 0;
+}
+
+int outputLinkedList(struct marksNPointer *current) {
+	if (current->nextNode == NULL) {
+		printf("%-10s%-6d%-13.2f\n", current->name, current->studentID, current->sum);
+		return 0;
+	}
+	printf("%-10s%-6d%-13.2f\n", current->name, current->studentID, current->sum);
+	return outputLinkedList(current->nextNode);
 }
