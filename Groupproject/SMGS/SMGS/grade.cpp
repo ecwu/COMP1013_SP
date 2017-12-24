@@ -57,12 +57,12 @@ int grading(struct stuNMarks *studentMarks, int assignmentNO, int questionNO, in
 	char letterGrade;
 	float marksum = 0;
 	for (int i = 0; i < stuNumber; i++) {
-		printf("Now grade for student: %s\n", studentMarks[i].name);
+		printf("Now grade for student: %s (%d/%d)\n", studentMarks[i].name, i+1, stuNumber);
 		for (int j = 0; j < questionNO; j++) {
-			printf("\tPlase input the grade for Assignment %d, Question %d(A,B,C,D)\n\t", assignmentNO, j + 1);
+			printf("\tPlase input the grade for Assignment %d, Question %d(A,B,C,D,F)\n\t", assignmentNO, j + 1);
 			do {
 				scanf("%c", &letterGrade);
-			} while (!((letterGrade >= 'a' && letterGrade <= 'd') || (letterGrade >= 'A' && letterGrade <= 'D')));
+			} while (!((letterGrade >= 'a' && letterGrade <= 'd') || (letterGrade >= 'A' && letterGrade <= 'D') || (letterGrade == 'F') || (letterGrade == 'f')));
 			switch (letterGrade) {
 			case 'a':
 			case 'A':
@@ -79,6 +79,10 @@ int grading(struct stuNMarks *studentMarks, int assignmentNO, int questionNO, in
 			case 'd':
 			case 'D':
 				marksum += 1.0;
+				break;
+			case 'f':
+			case 'F':
+				marksum += 0.0;
 				break;
 			}
 		}

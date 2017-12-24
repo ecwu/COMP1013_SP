@@ -1,0 +1,6 @@
+Name      ID    Assignment1  
+Jack Wu   1234  0.00         
+Brady     2345  0.00         
+Otto      3456  0.00         
+Cheryl    1233  0.00         
+Max Gu    2333  0.00         
