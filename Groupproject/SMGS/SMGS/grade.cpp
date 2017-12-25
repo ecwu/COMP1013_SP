@@ -147,7 +147,7 @@ int writeStudentMarks(struct stuNMarks *studentMarks, int stuNumber, int* assign
 		fprintf(markp, "\n");
 	}
 
-	printf("Output the data successful.\n");
+	printf("Output the marks data successful.\n");
 	fclose(markp);
 	return 0;
 }

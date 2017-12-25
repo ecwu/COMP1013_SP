@@ -46,7 +46,7 @@ int loadStudentMarksforInquiry(struct stuNMarks *studentMarks, int* assignmentSt
 
 	markp = fopen("marks.txt", "r");
 	if (markp == NULL) {
-		puts("Fatal Error: Unable to load students marks list.");
+		puts("Fatal Error: Unable to load students marks file.");
 		return -1;
 	}
 

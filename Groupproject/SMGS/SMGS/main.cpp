@@ -2,7 +2,7 @@
 
 
 int main() {
-	char version[] = "0.7.1";
+	char version[] = "0.8.0";
 	printf("Welcome to Score Management System %s\n", version);
 
 	while (1) {

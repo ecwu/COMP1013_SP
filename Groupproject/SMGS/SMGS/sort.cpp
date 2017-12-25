@@ -75,7 +75,7 @@ int writeStudentSum(struct stuNSum *studentSum, int stuNumber) {
 
 	sortedp = fopen("sorted.txt", "w");
 	if (sortedp == NULL) {
-		puts("Fatal Error: Unable to write student total marks list.");
+		puts("Fatal Error: Unable to write sorted file.");
 		return -1;
 	}
 
@@ -85,7 +85,7 @@ int writeStudentSum(struct stuNSum *studentSum, int stuNumber) {
 		fprintf(sortedp, "%-10s%-6d%-7.2f\n", studentSum[i].name, studentSum[i].studentID, studentSum[i].sum);
 	}
 
-	printf("Output the data successful.\n");
+	printf("Output the sorted data successful.\n");
 	fclose(sortedp);
 	return 0;
 }
@@ -99,7 +99,7 @@ int loadSortedList(int stuNumber) {
 
 	sortedp = fopen("sorted.txt", "r");
 	if (sortedp == NULL) {
-		puts("Fatal Error: Unable to load sorted marks list.");
+		puts("Fatal Error: Unable to load sorted file.");
 		exit(0);
 	}
 	fscanf(sortedp, "%[^\n]\n", uselessBuffer);
