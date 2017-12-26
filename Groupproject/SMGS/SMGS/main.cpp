@@ -2,7 +2,7 @@
 
 
 int main() {
-	char version[] = "0.8.5"; // version number
+	char version[] = "0.9.0"; // version number
 	printf("Welcome to Grade Management System %s\n", version);
 
 	while (1) { // Output start menu
