@@ -18,9 +18,9 @@ void subListFunction() {
 	}
 
 	do {
-		puts("1 - Inquire By Index");
-		puts("2 - Inquire By Student ID");
-		puts("3 - Return to the previous menu");
+		puts("1. By index");
+		puts("2. By student id");
+		puts("3. Quit");
 		printf("Please Select the function you want:");
 		scanf("%d", &select);
 

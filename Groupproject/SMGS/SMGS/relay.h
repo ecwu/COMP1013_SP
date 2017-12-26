@@ -27,7 +27,7 @@ struct marksNPointer {
 };
 
 void listFunction();
-int gradeFunction();
+int grade();
 int loadStudentList(struct stu *studentList, int *stuNumber);
 int loadStudentMarks(struct stuNMarks *studentMarks, struct stu *studentList, int* assignmentStatus, int stuNumber);
 void loadStudentMarksInit(struct stuNMarks *studentMarks, struct stu *studentList, int stuNumber);
