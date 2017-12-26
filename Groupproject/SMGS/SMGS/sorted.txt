@@ -1,6 +1,6 @@
 Name      ID    Total  
-Jack Wu   1234  4.00   
-Brady     2345  4.00   
-Otto      3456  4.00   
-Cheryl    1233  4.00   
-Max Gu    2333  4.00   
+Max Gu    2333  11.00  
+Jack Wu   1234  10.00  
+Cheryl    1233  9.00   
+Brady     2345  8.00   
+Otto      3456  8.00   
